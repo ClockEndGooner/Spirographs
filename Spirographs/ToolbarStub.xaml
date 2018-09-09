@@ -1,0 +1,14 @@
+<DockPanel>
+    <ToolBarTray DockPanel.Dock="Bottom">
+        <ToolBar>
+            <Button Name="SettingsButton" Margin="5" Click="OnButtonClick"
+                    Background="Black" Foreground="White" ToolTip="Spirograph Settings...">
+                <TextBlock Text="&#xE115;" FontFamily="Segoe UI Symbol" />
+            </Button>
+            <Button Name="SaveButton" Margin="5" Click="OnButtonClick"
+                    Background="Black" Foreground="White" ToolTip="Save Spirograph...">
+                <TextBlock Text="&#xE159;" FontFamily="Segoe UI Symbol" />
+            </Button>        
+        </ToolBar>
+    </ToolBarTray>
+</DockPanel>

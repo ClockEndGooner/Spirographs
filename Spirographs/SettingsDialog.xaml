@@ -1,0 +1,119 @@
+﻿<!--
+
+  SettingsDialog.xaml
+  Settings dialog box for drawing spirographs.
+  Copyright (C) 2016 - W. Wonneberger
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+                                                                           -->
+<Window x:Class="Spirographs.SettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spirographs"
+        xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        mc:Ignorable="d"
+        Title="Spirograph Settings" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" 
+        ResizeMode="NoResize" Background="#333333" Foreground="White">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Row="0" Grid.Column="0" Header="Spirograph"
+                  VerticalAlignment="Top" HorizontalAlignment="Center" Width="190" Height="205" Margin="5">
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">A:</Label>
+                <xctk:IntegerUpDown Name="AIntegerUpDown" Grid.Row="0" Grid.Column="1" 
+                                    Margin="2" Width="100" Height="25" 
+                                    Background="#FF09080A" Foreground="White"
+                                    Value="100" Increment="1" Maximum="1000" />
+                <Label Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">B:</Label>
+                <xctk:IntegerUpDown Name="BIntegerUpDown" Grid.Row="1" Grid.Column="1" 
+                                    Margin="2" Width="100" Height="25" 
+                                    Background="#FF09080A" Foreground="White"
+                                    Value="100" Increment="1" Maximum="1000" />
+                <Label Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">C:</Label>
+                <xctk:IntegerUpDown Name="CIntegerUpDown" Grid.Row="2" Grid.Column="1" 
+                                    Margin="2" Width="100" Height="25" 
+                                    Background="#FF09080A" Foreground="White"
+                                    Value="100" Increment="1" Maximum="1000" />
+                <Label Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="White">Iter:</Label>
+                <xctk:IntegerUpDown Name="IterIntegerUpDown" Grid.Row="3" Grid.Column="1" 
+                                    Margin="2" Width="100" Height="25" 
+                                    Background="#FF09080A" Foreground="White"
+                                    Value="100" Increment="1" Maximum="1000" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="Canvas Colors"
+                  VerticalAlignment="Top" HorizontalAlignment="Center" Width="190" Height="205" Margin="5">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="2" Foreground="White">Foreground:</Label>
+                <xctk:ColorPicker Name="ForegroundColorPicker" Grid.Row="1" Grid.Column="0" 
+                                  Margin="2" Width="165" Height="25" 
+                                  HorizontalAlignment="Left" DisplayColorAndName="True" />
+                <Label Grid.Row="2" Grid.Column="0" Margin="2" Foreground="White">Background:</Label>
+                <xctk:ColorPicker Name="BackgroundColorPicker" Grid.Row="3" 
+                                  Grid.Column="0" Margin="2" Width="165" Height="25"                                  
+                                  HorizontalAlignment="Left" DisplayColorAndName="True" />
+                <StackPanel Grid.Row="4" Grid.Column="0" Height="50" Margin="1,16,1,1" 
+                            Orientation="Horizontal" VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
+                    <Label Foreground="White" VerticalAlignment="Center" Margin="2">Line Thickness:</Label>
+                    <xctk:DecimalUpDown Name="StrokeDecimalUpDown" Grid.Row="3" Grid.Column="1" 
+                                    Width="65" Height="25" 
+                                    Background="#FF09080A" Foreground="White"
+                                    Value="1.5" Increment=".25" Minimum=".25" Maximum="4" />
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="5">
+            <Button Name="SettingsOKButon" Background="#FF09080A" Foreground="White" IsDefault="True" Width="65" Height="25" Margin="5" Click="OnSettingsOKClick">_OK</Button>
+            <Button Name="CancelSettingsButon" Background="#FF09080A" Foreground="White" IsCancel="True" Width="65" Height="25" Margin="5">_Cancel</Button>
+        </StackPanel>
+    </Grid> 
+</Window>

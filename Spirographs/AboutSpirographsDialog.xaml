@@ -1,0 +1,112 @@
+﻿<!--
+
+  AboutSpirographDialog.xaml
+  About Spirographs application dialog box Layout
+  Copyright (C) 2016 - W. Wonneberger
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+                                                                           -->
+<Window x:Class="Spirographs.AboutSpirographsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spirographs"
+        mc:Ignorable="d"
+        Name="AboutDialog" Title="About Spirographs" 
+        Background="#333333" Foreground="White" WindowStartupLocation="CenterOwner" 
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" Loaded="OnDialogLoad" >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="15,5,15,5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="AppInfoStyle">
+            <Setter Property="Control.HorizontalAlignment" Value="Center" />
+            <Setter Property="Control.FontSize" Value="14" />
+        </Style>
+
+        <Style x:Key="AppDetailStyle">
+            <Setter Property="Control.HorizontalAlignment" Value="Center" />
+            <Setter Property="Control.FontStyle" Value="Normal" />
+            <Setter Property="Control.FontSize" Value="12" />
+        </Style>
+
+        <Style x:Key="{x:Type Hyperlink}" TargetType="{x:Type Hyperlink}">
+            <Setter Property="Foreground" Value="Snow"/>
+            <Setter Property="TextDecorations" Value="None"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontStyle" Value="Normal" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="DodgerBlue"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Name="SpiroIcon" Grid.Row="0" Grid.Column="0"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Width="64" Height="64" Margin="20,10,20,50" 
+               Source="SpirographsIco.png" />
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="10">
+            <TextBlock Style="{StaticResource AppInfoStyle}" FontWeight="Bold"><Run Name="AppNameRun" /></TextBlock>
+            <TextBlock Style="{StaticResource AppInfoStyle}" FontStyle="Italic">
+                Version <Run Name="AppVersionRun" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource AppInfoStyle}">
+                <Hyperlink NavigateUri="https://github.com/ClockEndGooner/Spirograph" 
+                           ToolTip="View the source code for Spirographs on Bitbucket"
+                           Click="OnHyperlinkClick">
+                    https://github.com/ClockEndGooner/Spirograph
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource AppDetailStyle}">
+                A WPF variation on Rod Stephen's theme in C#
+            </TextBlock>
+            <TextBlock Style="{StaticResource AppInfoStyle}">
+                <Hyperlink NavigateUri="http://csharphelper.com/blog/2014/08/draw-a-hypotrochoid-spirograph-curve-in-c/" 
+                           ToolTip="View the C# Helper article Draw a hypotrochoid (Spirograph curve) in C# from Rod Stephens"
+                           Click="OnHyperlinkClick">
+                    Draw a hypotrochoid (Spirograph curve) in C#
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Style="{StaticResource AppDetailStyle}">Created by W. Wonneberger under the 
+                <Hyperlink NavigateUri="http://www.gnu.org/licenses/gpl-3.0-standalone.html" 
+                           ToolTip="View the GNU General Public License Version 3 at gnu.org"
+                           Click="OnHyperlinkClick">
+                    GNU General Public License (GPL) v3
+                </Hyperlink>
+            </TextBlock>
+            <Button Background="#FF09080A" Foreground="White" Width="70" Height="25" Margin="15" HorizontalAlignment="Right" IsDefault="True" 
+                    Click="OnOKButtonClick">_OK</Button>
+        </StackPanel>
+    </Grid>
+</Window>

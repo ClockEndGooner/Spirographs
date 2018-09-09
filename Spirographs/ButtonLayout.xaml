@@ -1,0 +1,25 @@
+<Grid>
+     <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*" Background="DarkGray" />
+     </Grid.ColumnDefinitions>
+    <Button Name="SettingsButton" Margin="5" Grid.Row="0" Grid.Column="0" Click="OnButtonClick"
+            Background="Black" Foreground="White" ToolTip="Spirograph Settings...">
+        <TextBlock Text="&#xE115;" FontFamily="Segoe UI Symbol" />
+    </Button>
+    <Button Name="SaveButton" Margin="5" Grid.Row="0" Grid.Column="1" Click="OnButtonClick"
+            Background="Black" Foreground="White" ToolTip="Save Spirograph...">
+        <TextBlock Text="&#xE159;" FontFamily="Segoe UI Symbol" />
+    </Button>
+</Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"                  
+                    Background="DarkGray" Margin="5">
+                <Button Name="SettingsButton" Margin="5" Grid.Row="0" Grid.Column="0" Click="OnButtonClick"
+                                Background="Black" Foreground="White" ToolTip="Spirograph Settings...">
+                            <TextBlock Text="&#xE115;" FontFamily="Segoe UI Symbol" />
+                        </Button>
+            <Button Name="SaveButton" Margin="5" Grid.Row="0" Grid.Column="1" Click="OnButtonClick"
+                                Background="Black" Foreground="White" ToolTip="Save Spirograph...">
+                <TextBlock Text="&#xE159;" FontFamily="Segoe UI Symbol" />
+            </Button>
+        </StackPanel>
