@@ -83,7 +83,7 @@
             </TextBlock>
             <TextBlock Style="{StaticResource AppInfoStyle}">
                 <Hyperlink NavigateUri="https://github.com/ClockEndGooner/Spirographs" 
-                           ToolTip="View the source code for Spirographs on Bitbucket"
+                           ToolTip="View the source code for Spirographs on GitHub"
                            Click="OnHyperlinkClick">
                     https://github.com/ClockEndGooner/Spirographs
                 </Hyperlink>
