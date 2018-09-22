@@ -29,7 +29,7 @@
         mc:Ignorable="d"
         Name="MainSpiroWindow" Title="Spirographs" ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="Manual" Width="Auto" Height="Auto" MinWidth="325" MinHeight="325"
-        Background="#333333" Foreground="White" Icon="SpirographsIco.png" Loaded="OnMainWindowLoading" Closing="OnMainWindowClosing">
+        Background="#FF2B2B30" Foreground="White" Icon="SpirographsIco.png" Loaded="OnMainWindowLoading" Closing="OnMainWindowClosing">
     <Window.Resources>
         <ContextMenu x:Key="SpiroContextMenu">
             <MenuItem Name="SettingsMenuItem" Header="Se_ttings..." Click="OnContextMenuItemClicked" 
@@ -41,8 +41,35 @@
                       ToolTip="About Spirographs..." />
         </ContextMenu>    
     </Window.Resources>
-    
+
     <Grid Name="MainLayoutGrid">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="Width" Value="44"/>
+                <Setter Property="Height" Value="44"/>
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Black"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -57,19 +84,16 @@
                     MouseRightButtonUp="OnRightMouseButtonClicked" />
         </Viewbox>
 
-        <ToolBarPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Stretch" Background="#FF777777">
-            <StackPanel Orientation="Horizontal" Background="#FF777777" HorizontalAlignment="Center">
-                <Button Name="SettingsButton" Margin="4" Click="OnButtonClick" Width="32" Height="32"
-                    Background="Black" Foreground="White" ToolTip="Spirograph Settings...">
-                    <TextBlock Text="&#xE115;" FontFamily="Segoe UI Symbol" />
+        <ToolBarPanel Name="ButtonPanel" Grid.Row="1" HorizontalAlignment="Stretch" Background="#FF2B2B30">
+            <StackPanel Orientation="Horizontal" Background="#FF2B2B30" HorizontalAlignment="Center">
+                <Button Name="SettingsButton" Margin="4" Click="OnButtonClick" ToolTip="Spirograph Settings...">
+                    <TextBlock Text="&#xE115;" />
                 </Button>
-                <Button Name="SaveButton" Margin="4" Click="OnButtonClick" Width="32" Height="32"
-                    Background="Black" Foreground="White" ToolTip="Save Spirograph...">
-                    <TextBlock Text="&#xE159;" FontFamily="Segoe UI Symbol" />
+                <Button Name="SaveButton" Margin="4" Click="OnButtonClick" ToolTip="Save Spirograph...">
+                    <TextBlock Text="&#xE159;" />
                 </Button>
-                <Button Name="AboutButton" Margin="4" Click="OnButtonClick" Width="32" Height="32"
-                    Background="Black" Foreground="White" ToolTip="About Spirographs...">
-                    <TextBlock Text="?" FontFamily="Segoe UI Symbol" />
+                <Button Name="AboutButton" Margin="4" Click="OnButtonClick" ToolTip="About Spirographs...">
+                    <TextBlock Text="&#xE11B;" />
                 </Button>
             </StackPanel>
         </ToolBarPanel>

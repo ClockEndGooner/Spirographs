@@ -41,11 +41,11 @@ namespace Spirographs
 
         #region Spirograph Class Data Members
 
-        private int A;
-        private int B;
-        private int C;
-        private int Iterations;
-        private double StrokeThickness;
+        private readonly int A;
+        private readonly int B;
+        private readonly int C;
+        private readonly int Iterations;
+        private readonly double StrokeThickness;
 
         #endregion Spirograph Class Data Members
 
@@ -67,27 +67,24 @@ namespace Spirographs
 
         #region Spirograph Class Implementation
 
-        public void Draw(Canvas canvas, 
-                         Color lineColor, 
-                         Color backgroundColor)
+        public void Draw(Canvas canvas,  Color lineColor,  Color backgroundColor)
         {
             canvas.Children.Clear();
             canvas.SnapsToDevicePixels = true;
 
             List<Point> points = CalculatePoints(canvas);
 
-            Polygon polygon = new Polygon();
-            polygon.Stroke = new SolidColorBrush(lineColor);
-            polygon.StrokeThickness = StrokeThickness;
-            polygon.HorizontalAlignment = HorizontalAlignment.Center;
-            polygon.VerticalAlignment = VerticalAlignment.Center;
-            polygon.Points = new PointCollection(points);
+            var polygon = new Polygon
+            {
+                Stroke = new SolidColorBrush(lineColor),
+                StrokeThickness = StrokeThickness,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                Points = new PointCollection(points)
+            };
 
             canvas.Children.Add(polygon);
-
             canvas.Background = new SolidColorBrush(backgroundColor);
-
-            return;
         }
 
         private double X(double t, double a, double b, double c)
@@ -117,8 +114,10 @@ namespace Spirographs
             double x1 = cx + X(t, A, B, C);
             double y1 = cy + Y(t, A, B, C);
 
-            List<Point> points = new List<Point>();
-            points.Add(new Point(x1, y1));
+            var points = new List<Point>
+            {
+                new Point(x1, y1)
+            };
 
             while (t <= maxT)
             {

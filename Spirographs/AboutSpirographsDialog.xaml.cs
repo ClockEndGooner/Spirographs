@@ -76,8 +76,6 @@ namespace Spirographs
         {
             AppVersionRun.Text = ApplicationVersion;
             AppNameRun.Text = ApplicationName;
-
-            return;
         }
 
         private void OnHyperlinkClick(object sender, RoutedEventArgs e)
@@ -90,15 +88,11 @@ namespace Spirographs
                 Debug.WriteLine(targetURI);
                 Process.Start(targetURI);
             }
-
-            return;
         }
 
         private void OnOKButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close();
-
-            return;
         }
 
         #endregion AboutSpirographsDialog Dialog & Child Control Event Handlers

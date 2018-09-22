@@ -48,8 +48,6 @@ namespace Spirographs
             InitializeComponent();
 
             SpirographSettings = settings;         
-
-            return;
         }
 
         #endregion MainWindow Class Constructor
@@ -82,8 +80,6 @@ namespace Spirographs
             {
                 DrawSpirograph();
             }
-
-            return;
         }
 
         private void OnMainWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -97,8 +93,6 @@ namespace Spirographs
             $"SpiroCanvas.Width: {SpiroCanvas.Width.ToString()}  Height: {SpiroCanvas.Height.ToString()}";
 
             Debug.WriteLine(trace);
-
-            return;
         }
 
         private void OnRightMouseButtonClicked(object sender, MouseButtonEventArgs e)
@@ -106,8 +100,6 @@ namespace Spirographs
             UIElement mouseClickTarget = sender as UIElement;
 
             ShowSpirograpContextMenu(mouseClickTarget);
-
-            return;
         }
 
         #endregion MainWindow Class & Child Control Event Handlers
@@ -115,14 +107,14 @@ namespace Spirographs
         #region MainWindow Class Implementation
         private void UpdateSpirographSettings()
         {
-            int maxValue = 
+            var maxValue = 
             Convert.ToInt32(Math.Max(ActualWidth, ActualHeight));
+
+            var settingsDialog = new SettingsDialog(SpirographSettings, maxValue)
+            {
+                Owner = this
+            };
         
-            SettingsDialog settingsDialog =
-            new SettingsDialog(SpirographSettings, maxValue);
-
-            settingsDialog.Owner = this;
-
             bool? settingsChanaged = settingsDialog.ShowDialog();
 
             if (settingsChanaged.HasValue && settingsChanaged.Value == true)
@@ -130,20 +122,15 @@ namespace Spirographs
                 SpirographSettings = settingsDialog.Settings;
                 DrawSpirograph();
             }
-
-            return;
         }
 
         private void SetCanvasSize()
         {
-            double canvasSize =
-            Math.Min(SystemParameters.PrimaryScreenWidth,
-                     SystemParameters.PrimaryScreenHeight);
+            var canvasSize = Math.Min(SystemParameters.PrimaryScreenWidth,
+                                      SystemParameters.PrimaryScreenHeight);
 
             SpiroCanvas.Width = canvasSize;
             SpiroCanvas.Height = canvasSize;
-
-            return;
         }
 
         private void DrawSpirograph()
@@ -161,8 +148,6 @@ namespace Spirographs
             theSpirograph.Draw(SpiroCanvas,
                                SpirographSettings.ForegroundColor,
                                SpirographSettings.BackgroundColor);
-
-            return;
         }
         private void SaveSpirographImage()
         {
@@ -177,35 +162,32 @@ namespace Spirographs
                                     bitmapSettings.BitmapFileName);
                 }
             }
-
-            return;
         }
 
         private BitmapFileSettings GetBitmapFileSettings()
         {
             BitmapFileSettings bitmapSettings = null;
 
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.Title = "Save Spirograph Image File";
-            fileDialog.FileName = DefaultImageFileName;
-            fileDialog.Filter = BitmapFileSettings.FileFilters;
-            fileDialog.FilterIndex = PNGDefaultFileFiler;
-            fileDialog.InitialDirectory =
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            fileDialog.AddExtension = true;
-            fileDialog.OverwritePrompt = true;
-            fileDialog.ValidateNames = true;
+            var saveFileDialog = new SaveFileDialog
+            {
+                Title = "Save Spirograph Image File",
+                FileName = DefaultImageFileName,
+                Filter = BitmapFileSettings.FileFilters,
+                FilterIndex = PNGDefaultFileFiler,
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                AddExtension = true,
+                OverwritePrompt = true,
+                ValidateNames = true,
+            };
 
-            bool? dialogResult = fileDialog.ShowDialog();
+            bool? dialogResult = saveFileDialog.ShowDialog();
 
             if (dialogResult.HasValue && dialogResult.Value == true)
             {
-                BitmapEncoding encoding = 
-                (BitmapEncoding) (fileDialog.FilterIndex - 1);
-                string imageFileName = fileDialog.FileName;
+                var encoding = (BitmapEncoding) (saveFileDialog.FilterIndex - 1);
+                var imageFileName = saveFileDialog.FileName;
 
-                bitmapSettings =
-                new BitmapFileSettings(encoding, imageFileName);
+                bitmapSettings = new BitmapFileSettings(encoding, imageFileName);
             }
 
             return bitmapSettings;
@@ -213,16 +195,13 @@ namespace Spirographs
 
         private void ShowSpirograpContextMenu(UIElement contextMenuTarget)
         {
-            ContextMenu spiroContextMenu = 
-            FindResource("SpiroContextMenu") as ContextMenu;
+            var spiroContextMenu = (ContextMenu) FindResource("SpiroContextMenu");
 
             if (spiroContextMenu != null)
             {
                 spiroContextMenu.PlacementTarget = contextMenuTarget;
                 spiroContextMenu.IsOpen = true;
             }
-
-            return;
         }
 
         private void OnContextMenuItemClicked(object sender, RoutedEventArgs menuItemClickEvent)
@@ -245,18 +224,16 @@ namespace Spirographs
 
                 ShowAboutDialogBox();
             }
-
-            return;
         }
 
         private void ShowAboutDialogBox()
         {
-            AboutSpirographsDialog aboutDialog = new AboutSpirographsDialog();
+            var aboutDialog = new AboutSpirographsDialog
+            {
+                Owner = this
+            };
 
-            aboutDialog.Owner = this;
             aboutDialog.ShowDialog();
-
-            return;
         }
 
         #endregion MainWindow Class Implementation

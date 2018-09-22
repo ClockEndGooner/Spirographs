@@ -36,7 +36,7 @@ namespace Spirographs
 
         public App()
         {
-            return;
+
         }
 
         #endregion Spirographs App Class Constructor
@@ -45,23 +45,19 @@ namespace Spirographs
 
         public void OnApplicationStartup(object sender, StartupEventArgs startupEvent)
         {
-            Point windowLocation;
-            Point windowSize;
-            SpirographSettings spirographSettings = null;
-
-            if (LoadSpirographUserSettings(out windowLocation, out windowSize, 
-                                           out spirographSettings))
+            if (LoadSpirographUserSettings(out var windowLocation, out var windowSize,
+                                           out var spirographSettings))
             {
-                theMainWindow = new MainWindow(spirographSettings);
-                theMainWindow.Left = windowLocation.X;
-                theMainWindow.Top = windowLocation.Y;
-                theMainWindow.Width = windowSize.X;
-                theMainWindow.Height = windowSize.Y;
+                theMainWindow = new MainWindow(spirographSettings)
+                {
+                    Left = windowLocation.X,
+                    Top = windowLocation.Y,
+                    Width = windowSize.X,
+                    Height = windowSize.Y
+                };
 
                 theMainWindow.Show();
             }
-
-            return;
         }
 
         private void OnApplicationExit(object sender, ExitEventArgs exitEvent)
@@ -73,8 +69,6 @@ namespace Spirographs
                     theUserSettings.Save();
                 }
             }
-
-            return;
         }
 
         #endregion Spirographs App Class Event Handlers
@@ -140,4 +134,3 @@ namespace Spirographs
         #endregion Spirographs App Class Supporting Methods
     }
 }
-
