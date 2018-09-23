@@ -80,9 +80,7 @@ namespace Spirographs
 
         private void OnHyperlinkClick(object sender, RoutedEventArgs e)
         {
-            Hyperlink clickedLink = sender as Hyperlink;
-
-            if (clickedLink != null)
+            if (sender is Hyperlink clickedLink)
             {
                 string targetURI = clickedLink.NavigateUri.OriginalString;
                 Debug.WriteLine(targetURI);

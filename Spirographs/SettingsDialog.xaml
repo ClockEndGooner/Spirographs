@@ -27,8 +27,35 @@
         xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="Spirograph Settings" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" 
-        ResizeMode="NoResize" Background="#333333" Foreground="White">
+        ResizeMode="NoResize" Background="#FF2B2B30" Foreground="White">
     <Grid ShowGridLines="False">
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Width" Value="65"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF808080"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -39,7 +66,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Row="0" Grid.Column="0" Header="Spirograph"
+        <GroupBox Grid.Row="0" Grid.Column="0" Header="Spirograph" BorderThickness="0.5"
                   VerticalAlignment="Top" HorizontalAlignment="Center" Width="190" Height="205" Margin="5">
             <Grid HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
@@ -76,7 +103,7 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Grid.Row="0" Grid.Column="1" Header="Canvas Colors"
+        <GroupBox Grid.Row="0" Grid.Column="1" Header="Canvas Colors" BorderThickness="0.5"
                   VerticalAlignment="Top" HorizontalAlignment="Center" Width="190" Height="205" Margin="5">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
@@ -92,7 +119,7 @@
 
                 <Label Grid.Row="0" Grid.Column="0" Margin="2" Foreground="White">Foreground:</Label>
                 <xctk:ColorPicker Name="ForegroundColorPicker" Grid.Row="1" Grid.Column="0" 
-                                  Margin="2" Width="165" Height="25" 
+                                  Margin="2" Width="165" Height="25"
                                   HorizontalAlignment="Left" DisplayColorAndName="True" />
                 <Label Grid.Row="2" Grid.Column="0" Margin="2" Foreground="White">Background:</Label>
                 <xctk:ColorPicker Name="BackgroundColorPicker" Grid.Row="3" 
@@ -112,8 +139,12 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" 
                     HorizontalAlignment="Right" Margin="5">
-            <Button Name="SettingsOKButon" Background="#FF09080A" Foreground="White" IsDefault="True" Width="65" Height="25" Margin="5" Click="OnSettingsOKClick">_OK</Button>
-            <Button Name="CancelSettingsButon" Background="#FF09080A" Foreground="White" IsCancel="True" Width="65" Height="25" Margin="5">_Cancel</Button>
+            <Button Name="SettingsOKButon" IsDefault="True" Click="OnSettingsOKClick">
+                <AccessText>_OK</AccessText>
+            </Button>
+            <Button Name="CancelSettingsButon" IsCancel="True">
+                <AccessText>_Cancel</AccessText>
+            </Button>
         </StackPanel>
     </Grid> 
 </Window>

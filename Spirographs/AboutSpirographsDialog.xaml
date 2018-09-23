@@ -132,7 +132,9 @@
                     GNU General Public License (GPL) v3
                 </Hyperlink>
             </TextBlock>
-            <Button HorizontalAlignment="Right" IsDefault="True" Click="OnOKButtonClick">OK</Button>
+            <Button HorizontalAlignment="Right" IsDefault="True" Click="OnOKButtonClick">
+                <AccessText>_OK</AccessText>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
