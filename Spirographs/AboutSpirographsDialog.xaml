@@ -27,7 +27,7 @@
         mc:Ignorable="d"
         Name="AboutDialog" Title="About Spirographs" 
         Background="#FF2B2B30" Foreground="White" WindowStartupLocation="CenterOwner" 
-        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" Loaded="OnDialogLoad" >
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" Loaded="OnDialogLoad" ShowInTaskbar="False" >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="15,5,15,5" />

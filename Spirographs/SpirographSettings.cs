@@ -39,8 +39,6 @@ namespace Spirographs
             ForegroundColor = foregroundColor;
             BackgroundColor = backgroundColor;
             StrokeThickness = strokeThickness;
-
-            return;
         }
 
         #endregion SpirographSettings Class Constructor

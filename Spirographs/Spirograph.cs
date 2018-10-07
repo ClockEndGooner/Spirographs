@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,6 +48,8 @@ namespace Spirographs
         private readonly int Iterations;
         private readonly double StrokeThickness;
 
+        public int Radius { get; private set; }
+
         #endregion Spirograph Class Data Members
 
         #region Spirograph Class Constructor
@@ -60,7 +63,7 @@ namespace Spirographs
             Iterations = iter;
             StrokeThickness = strokeThickness;
 
-            return;
+            Radius = A + C - B;
         }
 
         #endregion Spirograph Class Constructor
@@ -69,6 +72,9 @@ namespace Spirographs
 
         public void Draw(Canvas canvas,  Color lineColor,  Color backgroundColor)
         {
+            Debug.WriteLine($"Canvas Dimensions - Width: {canvas.Width.ToString()}  Height: {canvas.Height.ToString()}");
+            Debug.WriteLine($"Spirograph - Radius: {Radius.ToString()}");
+
             canvas.Children.Clear();
             canvas.SnapsToDevicePixels = true;
 

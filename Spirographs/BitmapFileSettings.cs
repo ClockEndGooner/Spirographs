@@ -62,8 +62,6 @@ namespace Spirographs
             OverwriteExistingBitmap = overwriteExistingFile;
 
             InitializeBitmapEncoder();
-
-            return;
         }
 
         #endregion BitmapFileSettings Class Constructor    
@@ -98,8 +96,6 @@ namespace Spirographs
                     Encoder = new WmpBitmapEncoder();
                     break;
             }
-
-            return;
         }
 
         #endregion BitmapFileSettings Class Implementation    

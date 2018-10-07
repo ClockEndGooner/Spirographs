@@ -27,6 +27,8 @@ using System.Windows.Controls;
 
 using Microsoft.Win32;
 
+using static System.Windows.SystemParameters;
+
 namespace Spirographs
 {
     public partial class MainWindow : Window
@@ -105,6 +107,7 @@ namespace Spirographs
         #endregion MainWindow Class & Child Control Event Handlers
 
         #region MainWindow Class Implementation
+
         private void UpdateSpirographSettings()
         {
             var maxValue = 
@@ -126,8 +129,7 @@ namespace Spirographs
 
         private void SetCanvasSize()
         {
-            var canvasSize = Math.Min(SystemParameters.PrimaryScreenWidth,
-                                      SystemParameters.PrimaryScreenHeight);
+            var canvasSize = Math.Min(PrimaryScreenWidth, PrimaryScreenHeight);
 
             SpiroCanvas.Width = canvasSize;
             SpiroCanvas.Height = canvasSize;
@@ -145,9 +147,22 @@ namespace Spirographs
                                            SpirographSettings.Iter,
                                            SpirographSettings.StrokeThickness);
 
-            theSpirograph.Draw(SpiroCanvas,
-                               SpirographSettings.ForegroundColor,
-                               SpirographSettings.BackgroundColor);
+            if (theSpirograph.Radius > (SpiroCanvas.Width / 2))
+            {
+                var warningDialog = new WarningDialog
+                {
+                    Owner = this
+                };
+
+                warningDialog.ShowDialog();
+            }
+
+            else
+            {
+                theSpirograph.Draw(SpiroCanvas,
+                                   SpirographSettings.ForegroundColor,
+                                   SpirographSettings.BackgroundColor);
+            }
         }
         private void SaveSpirographImage()
         {
@@ -236,7 +251,7 @@ namespace Spirographs
             aboutDialog.ShowDialog();
         }
 
-        #endregion MainWindow Class Implementation
+#endregion MainWindow Class Implementation
     }
 }
 

@@ -1,0 +1,104 @@
+﻿<!--
+
+  WarningDialog.xaml
+  About Spirographs application dialog box Layout
+  Copyright (C) 2016 - W. Wonneberger
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+                                                                           -->
+<Window x:Class="Spirographs.WarningDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spirographs"
+        mc:Ignorable="d"
+        Name="AboutDialog" Title="Spirograph Is Too Large" 
+        Background="#FF2B2B30" Foreground="White" WindowStartupLocation="CenterOwner" 
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" ShowInTaskbar="False" Height="171.556" >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="15,5,15,5" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="WarningDialogStyle">
+            <Setter Property="Control.HorizontalAlignment" Value="Center" />
+            <Setter Property="Control.FontSize" Value="14" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Width" Value="90"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF808080"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Name="WarningIcon" Grid.Row="0" Grid.Column="0"
+               HorizontalAlignment="Center" VerticalAlignment="Center"
+               Width="64" Height="64" Margin="20,10,20,50" 
+               Source="WarningIco.png" />
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="10">
+            <TextBlock>
+                <Run Text="The size for the spirograph will not fit inside the canvas." />
+                <LineBreak />                
+                <Run Text="What would you like to do?" />
+                <LineBreak />
+                <Run Text="Click on " /><Run Text="Draw" FontWeight="Bold" /><Run Text=" to draw the spirograph." />
+                <LineBreak />
+                <Run Text="Click on " /><Run Text="Previous" FontWeight="Bold" /><Run Text=" to draw using the previous settings." />
+            </TextBlock>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Name="DrawButton" VerticalAlignment="Center" HorizontalAlignment="Right" IsDefault="True" Click="OnDrawButtonClick" Margin="0,15,16,15">
+                    <AccessText>_Draw</AccessText>
+                </Button>
+                <Button Name="PreviousButton" VerticalAlignment="Center" HorizontalAlignment="Right" IsDefault="True" Click="OnPreviousButtonClick" Margin="0,15,16,15">
+                    <AccessText>_Previous</AccessText>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

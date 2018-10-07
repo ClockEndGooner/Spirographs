@@ -27,7 +27,7 @@
         xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="Spirograph Settings" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner" 
-        ResizeMode="NoResize" Background="#FF2B2B30" Foreground="White" Icon="SpirographsIco.png">
+        ResizeMode="NoResize" Background="#FF2B2B30" Foreground="White" Icon="SpirographsIco.png" ShowInTaskbar="False">
     <Grid ShowGridLines="False">
         <Grid.Resources>
             <Style TargetType="{x:Type Button}">

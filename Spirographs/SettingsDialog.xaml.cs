@@ -38,8 +38,6 @@ namespace Spirographs
 
             Settings = settings;
             SetDialogChildControlValues();
-
-            return;
         }
 
         private void SetDialogChildControlValues()
@@ -56,8 +54,6 @@ namespace Spirographs
             ForegroundColorPicker.SelectedColor = Settings.ForegroundColor;
             BackgroundColorPicker.SelectedColor = Settings.BackgroundColor;
             StrokeDecimalUpDown.Value = (decimal) Settings.StrokeThickness;
-
-            return;
         }
 
         private void OnSettingsOKClick(object sender, RoutedEventArgs e)
@@ -84,8 +80,6 @@ namespace Spirographs
 
                 Close();
             }
-
-            return;
         }
     }
 }
