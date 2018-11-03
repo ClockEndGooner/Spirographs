@@ -24,12 +24,10 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace Spirographs
 {
-    /// <summary>
-    /// Interaction logic for AboutSpirographsDialog.xaml
-    /// </summary>
     public partial class AboutSpirographsDialog : Window
     {
         #region AboutSpirographsDialog Class Constructor 
@@ -91,6 +89,16 @@ namespace Spirographs
         private void OnOKButtonClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                DialogResult = false;
+
+                this.Close();
+            }
         }
 
         #endregion AboutSpirographsDialog Dialog & Child Control Event Handlers

@@ -20,14 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////
 
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Spirographs
 {
     public partial class SettingsDialog : Window
     {
+        #region SettingsDialog Class Properties
+
         public SpirographSettings Settings { get; private set; }
         private int MaxSpiroValue;
+
+        #endregion SettingsDialog Class Properties
+
+        #region SettingsDialog Class Constructor
 
         public SettingsDialog(SpirographSettings settings,
                               int maxSpiroValue)
@@ -39,6 +46,10 @@ namespace Spirographs
             Settings = settings;
             SetDialogChildControlValues();
         }
+
+        #endregion SettingsDialog Class Constructor
+
+        #region SettingsDialog Class Implementation
 
         private void SetDialogChildControlValues()
         {
@@ -81,5 +92,17 @@ namespace Spirographs
                 Close();
             }
         }
+
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                DialogResult = false;
+
+                this.Close();
+            }
+        }
+
+        #endregion SettingsDialog Class Implementation
     }
 }

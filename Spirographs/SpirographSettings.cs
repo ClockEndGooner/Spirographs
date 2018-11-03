@@ -25,7 +25,7 @@ namespace Spirographs
 
         #endregion SpirographSettings Data Members & Auto Properties
 
-        #region SpirographSettings Class Constructor
+        #region SpirographSettings Class Constructors
 
         public SpirographSettings(int a, int b, int c, int iter, 
                                   Color foregroundColor, Color backgroundColor,
@@ -41,6 +41,31 @@ namespace Spirographs
             StrokeThickness = strokeThickness;
         }
 
+        public SpirographSettings(SpirographSettings previousSettings) :
+               this(previousSettings.A, previousSettings.B, previousSettings.C,
+                    previousSettings.Iter, previousSettings.ForegroundColor,
+                    previousSettings.BackgroundColor, previousSettings.StrokeThickness)
+        {
+
+        }
+
         #endregion SpirographSettings Class Constructor
+
+        #region SpirographSettings Class Implemenetation
+
+        public int Radius
+        {
+            get
+            {
+                return A + C - B;
+            }
+        }
+
+        public bool  IsSpirographRadiusLarger(double width)
+        {
+            return (Convert.ToDouble(Radius) > width);
+        }
+
+        #endregion SpirographSettings Class Implemenetation
     }
 }

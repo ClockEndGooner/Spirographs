@@ -38,7 +38,9 @@ namespace Spirographs
         private readonly string DefaultImageFileName = "Spirograph";
         private readonly int PNGDefaultFileFiler = 4;
 
-        public SpirographSettings SpirographSettings { get; private set ; }
+        public SpirographSettings SpirographSettings { get; private set; }
+        private SpirographSettings PreviousSettings { get; set; }
+
         private Spirograph theSpirograph;
 
         #endregion MainWindow Class Data Members
@@ -49,7 +51,8 @@ namespace Spirographs
         {
             InitializeComponent();
 
-            SpirographSettings = settings;         
+            SpirographSettings = settings;
+            PreviousSettings = new SpirographSettings(SpirographSettings);
         }
 
         #endregion MainWindow Class Constructor
@@ -133,37 +136,48 @@ namespace Spirographs
 
             SpiroCanvas.Width = canvasSize;
             SpiroCanvas.Height = canvasSize;
-        }
+        }    
 
         private void DrawSpirograph()
         {
             SetCanvasSize();
 
-            SpiroCanvas.Children.Clear();
+            var halfCanvasWidth = SpiroCanvas.Width / 2;
 
-            theSpirograph = new Spirograph(SpirographSettings.A,
-                                           SpirographSettings.B,
-                                           SpirographSettings.C,
-                                           SpirographSettings.Iter,
-                                           SpirographSettings.StrokeThickness);
-
-            if (theSpirograph.Radius > (SpiroCanvas.Width / 2))
+            if (SpirographSettings.IsSpirographRadiusLarger(halfCanvasWidth))
             {
                 var warningDialog = new WarningDialog
                 {
                     Owner = this
                 };
 
-                warningDialog.ShowDialog();
+                //
+                // dialogResult is true when either the Previous or Draw button have been
+                // clicked. False is returned if the user clicked on the close dialog 
+                // button.
+                //
+                var dialogResult = warningDialog.ShowDialog();
+
+                if (dialogResult.HasValue && dialogResult.Value == true)
+                {
+                    if (warningDialog.Response == WarningResponse.UsePreviousSettings)
+                    {
+                        SpirographSettings = PreviousSettings;
+                    }
+                }
             }
 
-            else
+            SpiroCanvas.Children.Clear();
+
+            theSpirograph = new Spirograph(SpirographSettings);
+            theSpirograph.Draw(SpiroCanvas);
+
+            if (!SpirographSettings.IsSpirographRadiusLarger(halfCanvasWidth))
             {
-                theSpirograph.Draw(SpiroCanvas,
-                                   SpirographSettings.ForegroundColor,
-                                   SpirographSettings.BackgroundColor);
-            }
+                PreviousSettings = new SpirographSettings(SpirographSettings);
+            }            
         }
+
         private void SaveSpirographImage()
         {
             BitmapFileSettings bitmapSettings = GetBitmapFileSettings();
@@ -173,8 +187,8 @@ namespace Spirographs
                 if (bitmapSettings != null)
                 {
                     theSpirograph.Save(SpiroCanvas,
-                                    bitmapSettings.Encoder,
-                                    bitmapSettings.BitmapFileName);
+                                       bitmapSettings.Encoder,
+                                       bitmapSettings.BitmapFileName);
                 }
             }
         }

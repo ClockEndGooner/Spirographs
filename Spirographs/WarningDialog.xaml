@@ -1,7 +1,7 @@
 ﻿<!--
 
   WarningDialog.xaml
-  About Spirographs application dialog box Layout
+  A Draw Sprigraph Warning dialog box Layout
   Copyright (C) 2016 - W. Wonneberger
 
  This program is free software: you can redistribute it and/or modify
@@ -25,9 +25,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Spirographs"
         mc:Ignorable="d"
-        Name="AboutDialog" Title="Spirograph Is Too Large" 
+        x:Name="WarningDiialog" Title="Spirograph Is Too Large" 
         Background="#FF2B2B30" Foreground="White" WindowStartupLocation="CenterOwner" 
-        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" ShowInTaskbar="False" Height="171.556" >
+        SizeToContent="WidthAndHeight" ResizeMode="NoResize" Icon="SpirographsIco.png" ShowInTaskbar="False" Height="172" KeyDown="OnKeyDown" >
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="15,5,15,5" />

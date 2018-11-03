@@ -47,33 +47,32 @@ namespace Spirographs
         private readonly int C;
         private readonly int Iterations;
         private readonly double StrokeThickness;
-
-        public int Radius { get; private set; }
+        private readonly Color LineColor;
+        private readonly Color BackgroundColor;
 
         #endregion Spirograph Class Data Members
 
         #region Spirograph Class Constructor
 
-        public Spirograph(int a, int b, int c, int iter,
-                          double strokeThickness)
+        public Spirograph(SpirographSettings settings)
         {
-            A = a;
-            B = b;
-            C = c;
-            Iterations = iter;
-            StrokeThickness = strokeThickness;
-
-            Radius = A + C - B;
+            A = settings.A;
+            B = settings.B;
+            C = settings.C;
+            Iterations = settings.Iter;
+            StrokeThickness = settings.StrokeThickness;
+            LineColor = settings.ForegroundColor;
+            BackgroundColor = settings.BackgroundColor;
         }
 
         #endregion Spirograph Class Constructor
 
         #region Spirograph Class Implementation
 
-        public void Draw(Canvas canvas,  Color lineColor,  Color backgroundColor)
+        public void Draw(Canvas canvas)
         {
             Debug.WriteLine($"Canvas Dimensions - Width: {canvas.Width.ToString()}  Height: {canvas.Height.ToString()}");
-            Debug.WriteLine($"Spirograph - Radius: {Radius.ToString()}");
+            // Debug.WriteLine($"Spirograph - Radius: {Radius.ToString()}");
 
             canvas.Children.Clear();
             canvas.SnapsToDevicePixels = true;
@@ -82,7 +81,7 @@ namespace Spirographs
 
             var polygon = new Polygon
             {
-                Stroke = new SolidColorBrush(lineColor),
+                Stroke = new SolidColorBrush(LineColor),
                 StrokeThickness = StrokeThickness,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -90,7 +89,7 @@ namespace Spirographs
             };
 
             canvas.Children.Add(polygon);
-            canvas.Background = new SolidColorBrush(backgroundColor);
+            canvas.Background = new SolidColorBrush(BackgroundColor);
         }
 
         private double X(double t, double a, double b, double c)

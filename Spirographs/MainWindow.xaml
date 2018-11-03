@@ -92,8 +92,9 @@
                 <Button Name="SaveButton" Margin="4" Click="OnButtonClick" ToolTip="Save Spirograph...">
                     <TextBlock Text="&#xE159;" />
                 </Button>
-                <Button Name="AboutButton" Margin="4" Click="OnButtonClick" ToolTip="About Spirographs...">
-                    <TextBlock Text="&#xE11B;" />
+                <Button Name="AboutButton" Margin="4" Click="OnButtonClick" 
+                        FontFamily="Segoe UI" FontSize="28" ToolTip="About Spirographs...">
+                    <TextBlock Text="?" />
                 </Button>
             </StackPanel>
         </ToolBarPanel>
