@@ -19,7 +19,6 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
@@ -53,10 +52,10 @@ namespace Spirographs
         {
             get
             {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+                var version = Assembly.GetExecutingAssembly().GetName().Version;
 
-                string appVersion =
-                String.Format("{0}.{1}.{2}.{3}",
+                var appVersion =
+                string.Format("{0}.{1}.{2}.{3}",
                               version.Major.ToString(),
                               version.Minor.ToString(),
                               version.Build.ToString(),
@@ -80,7 +79,7 @@ namespace Spirographs
         {
             if (sender is Hyperlink clickedLink)
             {
-                string targetURI = clickedLink.NavigateUri.OriginalString;
+                var targetURI = clickedLink.NavigateUri.OriginalString;
                 Debug.WriteLine(targetURI);
                 Process.Start(targetURI);
             }

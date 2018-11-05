@@ -19,6 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
+using System;
 using System.Windows;
 
 namespace Spirographs
@@ -47,7 +48,14 @@ namespace Spirographs
         {
             if (LoadSpirographUserSettings(out var windowLocation, out var windowSize,
                                            out var spirographSettings))
-            {
+            {                
+                var maxSize = Math.Max(windowSize.X, windowSize.Y);
+
+                if (spirographSettings.IsSpirographRadiusLarger(maxSize))
+                {
+                    spirographSettings = SpirographSettings.DefaultSettings;
+                }
+
                 theMainWindow = new MainWindow(spirographSettings)
                 {
                     Left = windowLocation.X,

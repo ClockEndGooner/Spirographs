@@ -72,7 +72,6 @@ namespace Spirographs
         public void Draw(Canvas canvas)
         {
             Debug.WriteLine($"Canvas Dimensions - Width: {canvas.Width.ToString()}  Height: {canvas.Height.ToString()}");
-            // Debug.WriteLine($"Spirograph - Radius: {Radius.ToString()}");
 
             canvas.Children.Clear();
             canvas.SnapsToDevicePixels = true;
@@ -140,20 +139,19 @@ namespace Spirographs
         public bool Save(Canvas spiroCanvas, BitmapEncoder bitmapEncoder,
                          string spiroFileName)
         {
-            Rect canvasRect = VisualTreeHelper.GetDescendantBounds(spiroCanvas);
+            var canvasRect = VisualTreeHelper.GetDescendantBounds(spiroCanvas);
 
-            RenderTargetBitmap renderBitmap =
+            var renderBitmap =
             new RenderTargetBitmap((int) canvasRect.Width, 
                                    (int) canvasRect.Height,
                                    DefaultDPIX, DefaultDPIY, 
                                    PixelFormats.Default);
 
-            DrawingVisual drawingVisual = new DrawingVisual();
+            var drawingVisual = new DrawingVisual();
 
-            using (DrawingContext drawingContext = drawingVisual.RenderOpen())
+            using (var drawingContext = drawingVisual.RenderOpen())
             {
-                VisualBrush visualBrush =
-                new VisualBrush(spiroCanvas);
+                var visualBrush = new VisualBrush(spiroCanvas);
 
                 drawingContext.DrawRectangle(visualBrush, null,
                                new Rect(new Point(), canvasRect.Size));
@@ -163,7 +161,7 @@ namespace Spirographs
             renderBitmap.Render(drawingVisual);
             bitmapEncoder.Frames.Add(BitmapFrame.Create(renderBitmap));
 
-            using (MemoryStream bitmapStream = new MemoryStream())
+            using (var bitmapStream = new MemoryStream())
             {
                 bitmapEncoder.Save(bitmapStream);
                 bitmapStream.Close();

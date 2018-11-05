@@ -33,10 +33,14 @@ namespace Spirographs
 {
     public partial class MainWindow : Window
     {
-        #region MainWindow Class Data Members
+        #region MainWindow Class Constant Definitions 
 
         private readonly string DefaultImageFileName = "Spirograph";
         private readonly int PNGDefaultFileFiler = 4;
+
+        #endregion MainWindow Class Constant Definitions 
+
+        #region MainWindow Class Data Members
 
         public SpirographSettings SpirographSettings { get; private set; }
         private SpirographSettings PreviousSettings { get; set; }
@@ -164,6 +168,15 @@ namespace Spirographs
                     {
                         SpirographSettings = PreviousSettings;
                     }
+                }
+
+                //
+                // dialogResult is false and indicates that the user aborted 
+                // changing the spirograph settings.
+                //
+                else
+                {
+                    return;
                 }
             }
 
