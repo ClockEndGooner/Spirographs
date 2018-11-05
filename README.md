@@ -3,7 +3,7 @@
 ## Description
 Spirographs is a Windows application written in C# using WPF, and is based on Rod Stephen's Windows Forms based program listed on his C# Helper blog entry **_Draw a hypotrochoid (Spirograph curve) in C#_** at http://csharphelper.com/blog/2014/08/draw-a-hypotrochoid-spirograph-curve-in-c/
 
-![Spirographs - A WPF Application](Spirographs/images/Spirographs.png)
+![Spirographs - A WPF Application](https://github.com/ClockEndGooner/Spirographs/blob/master/images/Spirographs.png)
 
 ## References Used
 - Microsoft Windows Presentation Framework & XAML Version 4.0
