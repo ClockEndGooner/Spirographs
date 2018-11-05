@@ -24,5 +24,11 @@ This project demonstrates the following basic desktop application features:
 
 - Using a WPF Hyperlink to open a specified web link using the system's default web browser (_**Source Files:** [AboutSpirographsDialog.xaml](Spirographs/AboutSpirographsDialog.xaml) and [AboutSpirographsDialog.xaml.cs](/Spirographs/AboutSpirographsDialog.xaml.cs)._)
 
+## Samle Spirographs
+
+The following are samples of the types of spirographs that can be rendered using this application.  For each of the samples listed below, the main application window should be set with a width of 575 pixels by 630 pixels.
+
+![Sample Spirographs](Spirographs/images/SampleSpirographs.png)
+
 ## License
 Released under the GNU General Public License Version 3
