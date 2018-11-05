@@ -28,7 +28,7 @@ This project demonstrates the following basic desktop application features:
 
 The following are samples of the types of spirographs that can be rendered using this application.  For each of the samples listed below, the main application window should be set with a width of 575 pixels by 630 pixels.
 
-![Sample Spirographs](Spirographs/images/SampleSpirographs.png)
+![Sample Spirographs](https://github.com/ClockEndGooner/Spirographs/blob/master/images/SampleSpirographs.png)
 
 ## License
 Released under the GNU General Public License Version 3
